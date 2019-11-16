@@ -1,5 +1,30 @@
 class Contracheque
- 
+    def initialize()
+        #Insalubridade: 10, 20 ou 40 por cento do salário base
+        #Periculosidade: 30 por cento
+        #Noturno: valor da hora + 20 por cento
+        @adicionais = {"Insalubridade" => 0.00, "Periculosidade" => 0.00, "Noturno" => 0.00}
+        #Comissão e Bônus: porcentagem
+        #Gratificação: valor
+        @bonificacoes = {"Comissão" => 0.00, "Bônus" => 0.00, "Gratificação" => 0.00}
+
+        #Adiantamento: valor fixo
+        #Faltas = salario_hora * dias faltados
+        #INSS = Até R$ 1.693,72	8%
+                #De R$ 1.693,73 a R$ 2.822,90	9%
+                #De R$ 2.822,91 até R$ 5.645,80	    11%
+        #Sindicato = 3,33% do salário
+        #Vale Transporte = 
+        #Vale Refeição =
+        #Vale Alimentação =
+        #Plano de Saúde =
+        #Plano Odontológico =
+
+        @descontos = {"Adiantamento" => 0.00, "Faltas" => , "INSS" => , "Sindicato" => , "Vale Transporte" => , "Vale Refeição" => ,
+        "Vale Alimentação" => , "Plano de Saúde" => , "Plano Odontológico" => }
+
+
+    end
     def setNomeFunc(nome_funcionario)
         @nome_funcionario = nome_funcionario
     end
@@ -86,29 +111,3 @@ class Contracheque
 
 
 end
-
-=begin
-
-class Pessoa
-    def initialize(nome, funcao)
-        @nome = nome
-        @funcao = funcao
-    end
-
-    def getNome()
-        return @nome
-    end
-end
-
-class Empresa
-    def initialize(razao_social, cnpj) 
-        @razao_social = razao_social
-        @cnpj = cnpj
-    end
-
-    def getNome()
-        return @razao_social
-    end
-end
-
-=end

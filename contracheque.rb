@@ -2,6 +2,6 @@ require './classes.rb'
 
 contra = Contracheque.new
 
-contra.setNomeFunc("Joriventol")
+contra.setNomeFunc("Jorivelton")
 
-puts contra.nome
+puts contra.getNomeFunc()
