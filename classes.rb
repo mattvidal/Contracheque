@@ -14,11 +14,9 @@ class Contracheque
                 #De R$ 1.693,73 a R$ 2.822,90	9%
                 #De R$ 2.822,91 até R$ 5.645,80	    11%
         #Sindicato = 3,33% do salário
-        #Vale Transporte = 
-        #Vale Refeição =
+        #Vale Transporte = até 6 por cento do salário. Caso o valor digitado for maior que os 6%, só será cobrado os 6%.
+        #Vale Refeição = até 20 por cento do salário. Caso o valor digitado for maior que os 20%, só será cobrado os 20%.
         #Vale Alimentação =
-        #Plano de Saúde =
-        #Plano Odontológico =
 
         @descontos = {"Adiantamento" => 0.00, "Faltas" => , "INSS" => , "Sindicato" => , "Vale Transporte" => , "Vale Refeição" => ,
         "Vale Alimentação" => , "Plano de Saúde" => , "Plano Odontológico" => }
