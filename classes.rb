@@ -1,5 +1,13 @@
+require 'date'
+
 class Contracheque
-    def initialize()
+    def initialize(razao_social, cnpj)
+        @razao_social = razao_social
+        @cnpj = cnpj
+        @horaAtual = DateTime.now
+        @mes_referencia = @horaAtual.month
+        @ano_referencia = @horaAtual.year
+
         #Insalubridade: 10, 20 ou 40 por cento do salário base
         #Periculosidade: 30 por cento
         #Noturno: valor da hora + 20 por cento
@@ -16,13 +24,13 @@ class Contracheque
         #Sindicato = 3,33% do salário
         #Vale Transporte = até 6 por cento do salário. Caso o valor digitado for maior que os 6%, só será cobrado os 6%.
         #Vale Refeição = até 20 por cento do salário. Caso o valor digitado for maior que os 20%, só será cobrado os 20%.
-        #Vale Alimentação =
+        #Vale Alimentação = até 20 por cento do salário. Caso o valor digitado for maior que os 20%, só será cobrado os 20%.
 
-        @descontos = {"Adiantamento" => 0.00, "Faltas" => , "INSS" => , "Sindicato" => , "Vale Transporte" => , "Vale Refeição" => ,
-        "Vale Alimentação" => , "Plano de Saúde" => , "Plano Odontológico" => }
-
+        @descontos = {"Adiantamento" => 0.00, "Faltas" => 0.00, "INSS" => 0.00, "Sindicato" => 0.00, "Vale Transporte" => 0.00, "Vale Refeição" => 0.00,
+        "Vale Alimentação" => 0.00, "Plano de Saúde" => 0.00, "Plano Odontológico" => 0.00}
 
     end
+
     def setNomeFunc(nome_funcionario)
         @nome_funcionario = nome_funcionario
     end
@@ -71,41 +79,41 @@ class Contracheque
         return @horas_extras
     end
     
-    def setMesReferencia(mes_referencia)
-        @mes_referencia = mes_referencia
-    end
+    #def setMesReferencia(mes_referencia)
+     #   @mes_referencia = mes_referencia
+    #end
 
     def getMesReferencia()
         return @mes_referencia
     end
 
-    def setAnoReferencia(ano_referencia)
-        @ano_referencia = ano_referencia
-    end
+    #def setAnoReferencia(ano_referencia)
+    #    @ano_referencia = ano_referencia
+    #end
 
     def getAnoReferencia()
         return @ano_referencia
     end
-
-    def setRazaoSocial(razao_social)
-        @razao_social = razao_social
-    end
+    
+    #def setRazaoSocial(razao_social)
+    #    @razao_social = razao_social
+    #end
 
     def getRazaoSocial()
         return @razao_social
     end
 
-    def setCNPJ(cnpj)
-        @cnpj = cnpj
-    end
+    #def setCNPJ(cnpj)
+        #@cnpj = cnpj
+    #end
 
     def getCNPJ()
         return @cnpj
     end
 
-
-
-
+    def criarContracheque()
+    
+    end
 
 
 end
