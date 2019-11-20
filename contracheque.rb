@@ -7,7 +7,7 @@ nome = gets.chomp
 
 contracheque1.setNomeFunc(nome)
 
-puts "Qual o cargo do #{nome}?"
+puts "Qual o cargo do #{nome}?" 
 
 cargo = gets.chomp
 
