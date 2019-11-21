@@ -66,7 +66,6 @@ class Contracheque
 
     def setSalarioFixo(salariofixo)
         @salarioFixo = salariofixo
-        @salarioLiquido = salarioFixo
     end
     
     def getSalarioFixo()
@@ -145,6 +144,8 @@ class Contracheque
 
     def calculaINSS()
         case @salarioFixo
+            #O .. entre os valores do when determina um intervalo
+            #ou seja, testa se o valor da variavel no case se encontra entre esses valores
         when 0..1693.72
             @descontos[:"INSS"] = @salarioFixo * 0.08
         when 1593.73..2822.90
@@ -175,6 +176,8 @@ class Contracheque
 
     #Adicionais
     def calculaInsalubridade(porcentagem=0)
+        #Usando um case, ele testa qual o adicional de insalubridade, se receber
+        #e retorna o valor a ser recebido
         @adicionais[:"Insalubridade"] = begin
             case porcentagem
             when 0 
@@ -192,11 +195,17 @@ class Contracheque
     end
     
     def calculaPericulosidade(resposta="não")
+        #A função recebe uma resposta (sim/não)
+        #converte a resposta para mínuscula e testa se ele recebe adicional de periculosidade
+        #se sim, ele retorna o valor do adicional (*0,3 ou 30%) ou 0 se não receber
         @adicionais[:"Periculosidade"] = resposta.downcase == "sim" ? @salarioFixo * 0.3 : 0.0
     end
 
     def calculaAdicionalNoturno(horas=0)
-        @adicionais[:"Noturno"] = horas == 0 ? 0.0 : horas * (valorHora + @valorHora * 0.2)
+        #Recebe, por padrão, o valor 0 de horas
+        #Se ele fez 0 horas, retorna o valor de R$ 0.00 para o adicional
+        #se não, calcula 
+        @adicionais[:"Noturno"] = horas == 0 ? 0.00 : horas * (valorHora + @valorHora * 0.2)
     end
 
     #Bonificações
@@ -210,5 +219,43 @@ class Contracheque
 
     def calculaGratificacao(gratificacao=0.0)
         @bonificacoes[:"Gratificação"] = gratificacao
+    end
+
+    #Função que calcula o salário líquido com base nos valores recebidos
+    def calculaSalarioLiquido()
+        #Atribui o valor do salário bruto ao valor inicial do salário líquido
+        @salarioLiquido = @salarioFixo
+        #Faz os descontos percorrendo o hash de descontos
+        @descontos.each_value {|valor| @salarioLiquido -= valor }
+        #Adiciona as bonificações e os adicionais percorrendo o hash relacionado
+        @bonificacoes.each_value {|valor| @salarioLiquido -= valor }
+        @descontos.each_value {|valor| @salarioLiquido -= valor }
+    end
+
+    #Imprime o contracheque
+    puts "Data: #{@mes_referencia} de #{@ano_referencia}"
+    puts "------------EMPRESA------------"
+    puts "CNPJ: #{@cnpj}"
+    puts "Razão Social: #{@razao_social}"
+    puts "----------FUNCIONÁRIO----------"
+    puts "Nome: #{@nome_funcionario}"
+    puts "Função: #{@funcao}"
+    puts "Carga Horária: #{@carga_horaria} horas"
+    puts "Salário Bruto: R$ #{@salarioFixo}"
+    puts "Salário Líquido: R$ #{@salarioLiquido}"
+    puts "-----------DESCONTOS-----------"
+    #Outra maneira de percorrer um hash
+    #Quer dizer, é a mesma maneira, só mudando { } por do/end
+    #e tirando tudo de uma linha só
+    @descontos.each do |nome, valor|
+        puts "#{nome}: R$ #{valor}"
+    end
+    puts "----------BONIFICAÇÕES----------"
+    @bonificacoes.each do |nome, valor|
+        puts "#{nome}: R$ #{valor}"
+    end
+    puts "-----------ADICIONAIS-----------"
+    @adicionais.each do |nome, valor|
+        puts "#{nome}: R$ #{valor}"
     end
 end
