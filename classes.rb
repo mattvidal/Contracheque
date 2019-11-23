@@ -228,8 +228,8 @@ class Contracheque
         #Faz os descontos percorrendo o hash de descontos
         @descontos.each_value {|valor| @salarioLiquido -= valor }
         #Adiciona as bonificações e os adicionais percorrendo o hash relacionado
-        @bonificacoes.each_value {|valor| @salarioLiquido -= valor }
-        @descontos.each_value {|valor| @salarioLiquido -= valor }
+        @bonificacoes.each_value {|valor| @salarioLiquido += valor }
+        @adicionais.each_value {|valor| @salarioLiquido += valor }
     end
 
     #Imprime o contracheque
