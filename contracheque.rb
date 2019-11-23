@@ -25,6 +25,10 @@ contracheque.setCargaHoraria(qtd_horas)
 contracheque.setQtdDiasTrabalhados(qtd_dias_trabalhados)
 contracheque.setHorasExtras(qtd_horas_extras)
 
+#Chama as funções para calcular o valor da hora
+contracheque.calculaHorasDiarias()
+contracheque.calculaValorHora()
+
 #Lê as outras informações necessárias para a execução do programa
 #Calcula as faltas
 puts "Quantos dias o funcionário faltou? (se nenhum, digite 0)"
@@ -48,13 +52,15 @@ contracheque.calculaValeAlimentacao(va)
 #Calcula outros descontos
 teste = true
 while teste do 
-    puts "O funcionário recebeu adiantamento? (sim/não)"
-    resp = gets.chomp
-    if (resp.downcase == "sim")
+    puts "O funcionário recebeu adiantamento? (sim/nao)"
+    resp = gets.chomp.to_s
+    #Converte a string para letra minúscula
+    resp.downcase!
+    if (resp == "sim")
         puts "Qual o valor? (apenas números, use . no lugar de , por exemplo 150.23)"
         adiantamento = gets.chomp.to_f
         contracheque.calculaAdiantamento(adiantamento)
-    elsif (resp.downcase != "não" && resp.downcase != "nao")
+    elsif (resp != "nao")
         puts "Resposta inválida! Digite apenas sim ou não"
         next
     end
@@ -62,11 +68,12 @@ while teste do
 end
 
 while !teste do
-    puts "O sindicato é pago? (sim/não)"
-    resp = gets.chomp
+    puts "O sindicato é pago? (sim/nao)"
+    resp = gets.chomp.to_s
+    resp.downcase!
     #Maneira mais simple de escrever uma estrutura de if com apenas uma instrução interna
     #O next é o equivalente ao continue de outras linguagens, pulando as instruções seguintes de dentro da estrutura
-    next if (resp.downcase != "não" && resp.downcase != "nao" && resp.downcase != "sim")
+    next if (resp != "nao" && resp != "sim")
     teste = true
     contracheque.calculaSindicato(resp)
 end
@@ -96,22 +103,24 @@ while teste do
 end 
 
 while !teste do
-    puts "Recebe adicional de periculosidade? (sim/não)"
-    resp = gets.chomp
-    next if (resp.downcase != "não" && resp.downcase != "nao" && resp.downcase != "sim")
+    puts "Recebe adicional de periculosidade? (sim/nao)"
+    resp = gets.chomp.to_s
+    resp.downcase!
+    next if (resp != "nao" && resp != "sim")
     teste = true
     contracheque.calculaPericulosidade(resp)
 end
 
 while teste do 
-    puts "O funcionário deve receber adicional noturno? (sim/não)"
-    resp = gets.chomp
-    if (resp.downcase == "sim")
+    puts "O funcionário deve receber adicional noturno? (sim/nao)"
+    resp = gets.chomp.to_s
+    resp.downcase!
+    if (resp == "sim")
         puts "Quantas horas noturnas ele fez?"
         noturno = gets.chomp.to_i
         contracheque.calculaAdicionalNoturno(noturno)
-    elsif (resp.downcase != "não" && resp.downcase != "nao")
-        puts "Resposta inválida! Digite apenas sim ou não"
+    elsif (resp != "nao")
+        puts "Resposta inválida! Digite apenas sim ou nao"
         next
     end
     teste = false 

@@ -130,7 +130,7 @@ class Contracheque
 
     #Calcula quantas horas o funcionário trabalha por dia, em média
     def calculaHorasDiarias()
-        @horasDiarias = @carga_horaria / qtd_dias_trabalhados
+        @horasDiarias = @carga_horaria / @qtd_dias_trabalhados
     end
     #Calcula o valor da hora trabalhada do funcionário
     def calculaValorHora()
@@ -171,7 +171,7 @@ class Contracheque
         @descontos[:"Adiantamento"] = adiantamento
     end
 
-    def calculaSindicato(resposta="não")
+    def calculaSindicato(resposta="nao")
         @descontos[:"Descontos"] = resposta.downcase == "sim" ? @salarioFixo * 0.0333 : 0.0
 
     #Adicionais
@@ -194,18 +194,18 @@ class Contracheque
         end 
     end
     
-    def calculaPericulosidade(resposta="não")
-        #A função recebe uma resposta (sim/não)
+    def calculaPericulosidade(resposta="nao")
+        #A função recebe uma resposta (sim/nao)
         #converte a resposta para mínuscula e testa se ele recebe adicional de periculosidade
-        #se sim, ele retorna o valor do adicional (*0,3 ou 30%) ou 0 se não receber
+        #se sim, ele retorna o valor do adicional (*0,3 ou 30%) ou 0 se nao receber
         @adicionais[:"Periculosidade"] = resposta.downcase == "sim" ? @salarioFixo * 0.3 : 0.0
     end
 
     def calculaAdicionalNoturno(horas=0)
         #Recebe, por padrão, o valor 0 de horas
         #Se ele fez 0 horas, retorna o valor de R$ 0.00 para o adicional
-        #se não, calcula 
-        @adicionais[:"Noturno"] = horas == 0 ? 0.00 : horas * (valorHora + @valorHora * 0.2)
+        #se nao, calcula 
+        @adicionais[:"Noturno"] = horas == 0 ? 0.00 : horas * (@valorHora + @valorHora * 0.2)
     end
 
     #Bonificações
