@@ -233,29 +233,32 @@ class Contracheque
     end
 
     #Imprime o contracheque
-    puts "Data: #{@mes_referencia} de #{@ano_referencia}"
-    puts "------------EMPRESA------------"
-    puts "CNPJ: #{@cnpj}"
-    puts "Razão Social: #{@razao_social}"
-    puts "----------FUNCIONÁRIO----------"
-    puts "Nome: #{@nome_funcionario}"
-    puts "Função: #{@funcao}"
-    puts "Carga Horária: #{@carga_horaria} horas"
-    puts "Salário Bruto: R$ #{@salarioFixo}"
-    puts "Salário Líquido: R$ #{@salarioLiquido}"
-    puts "-----------DESCONTOS-----------"
-    #Outra maneira de percorrer um hash
-    #Quer dizer, é a mesma maneira, só mudando { } por do/end
-    #e tirando tudo de uma linha só
-    @descontos.each do |nome, valor|
-        puts "#{nome}: R$ #{valor}"
+    def geraContracheque()
+        puts "Data: #{@mes_referencia} de #{@ano_referencia}"
+        puts "------------EMPRESA------------"
+        puts "CNPJ: #{@cnpj}"
+        puts "Razão Social: #{@razao_social}"
+        puts "----------FUNCIONÁRIO----------"
+        puts "Nome: #{@nome_funcionario}"
+        puts "Função: #{@funcao}"
+        puts "Carga Horária: #{@carga_horaria} horas"
+        puts "Salário Bruto: R$ #{@salarioFixo}"
+        puts "Salário Líquido: R$ #{@salarioLiquido}"
+        puts "-----------DESCONTOS-----------"
+        #Outra maneira de percorrer um hash
+        #Quer dizer, é a mesma maneira, só mudando { } por do/end
+        #e tirando tudo de uma linha só
+        @descontos.each do |nome, valor|
+            puts "#{nome}: R$ #{valor}"
+        end
+        puts "----------BONIFICAÇÕES----------"
+        @bonificacoes.each do |nome, valor|
+            puts "#{nome}: R$ #{valor}"
+        end
+        puts "-----------ADICIONAIS-----------"
+        @adicionais.each do |nome, valor|
+            puts "#{nome}: R$ #{valor}"
+        end
     end
-    puts "----------BONIFICAÇÕES----------"
-    @bonificacoes.each do |nome, valor|
-        puts "#{nome}: R$ #{valor}"
-    end
-    puts "-----------ADICIONAIS-----------"
-    @adicionais.each do |nome, valor|
-        puts "#{nome}: R$ #{valor}"
-    end
+end
 end
